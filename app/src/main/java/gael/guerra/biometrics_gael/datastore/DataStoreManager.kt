@@ -18,7 +18,7 @@ class DataStoreManager(private val context: Context) {
         val BIOMETRICS_ACTIVE = booleanPreferencesKey("biometrics")
     }
 
-    val isLoggeedinFlow: Flow<Boolean> = context.dataStore.data.map {
+    val isLoggedInFlow: Flow<Boolean> = context.dataStore.data.map {
         it[IS_LOGGED_IN] ?: false
     }
 
@@ -37,7 +37,7 @@ class DataStoreManager(private val context: Context) {
         }
     }
 
-    suspend fun activeBiometrics(active: Boolean) {
+    suspend fun setBiometricsActive(active: Boolean) {
         context.dataStore.edit {
             it[BIOMETRICS_ACTIVE] = active
         }
